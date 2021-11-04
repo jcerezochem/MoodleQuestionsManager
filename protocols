@@ -1,0 +1,19 @@
+# Extract questions first time (with -trans -cleantxt)
+#../Tools/extract_questions_new.py -f questions*.xml -trans -cleantxt
+# Review the rst file
+# Check that rst files are ok and then backup rst files
+#for file in *rst; do cp $file ${file}.bk -v; done
+ 
+ 
+## This steps are included in update_questions.sh
+# Redo the xml file with -userev and -genpdf
+../Tools/extract_questions_new.py -f questions*.xml -userev -genpdf
+# Fix tex and regenerate pdf
+for file in *tex; do echo $file; ../Tools/fix_question_tex.sh $file; pdflatex $file; rm ${file/.tex/}.{aux,log} -v; done
+# Check that rst files are ok and then backup rst files
+for file in *rst; do cp $file ${file}.bk -v; done
+
+
+## Regenerate rst files with updated format (using revised files)
+../Tools/extract_questions_transition.py -f questions*.xml -userev
+for file in *_NEW.rst; do mv $file ${file/_NEW/} -v; done

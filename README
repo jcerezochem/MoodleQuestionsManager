@@ -1,0 +1,24 @@
+Tools to manage Moodle quizzes
+-------------------------------
+
+extract_questions_new.py:
+Extract all questions in question.xml from backup course.
+Writes an rst file with the minimal info, that can be used to
+check the translation and make fixes on the questions with a
+text file (ASCII)
+It can be rerun with the revised rst file to generate the final
+XML with questions to be imported in Moodle (with option -userev)
+In this case, reads the rst file written before
+With -genpdf generates tex and pdf files (with pdflatex)
+
+extract_questions_transition.py
+Same as above, but also writes a rst file when run with -userev, so 
+as to generate a rst file including possible changes to the format
+
+
+process_question_tex.sh
+Process tex file to fix some xml tags and turn $$ latex marks into $
+After doing so, rerun pdflatex to get the right pdf's:
+
+for file in *tex; do ../Tools/fix_question_tex.sh $file; pdflatex $file; done
+

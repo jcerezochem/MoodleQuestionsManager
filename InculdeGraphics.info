@@ -1,0 +1,12 @@
+Incluir las figuras originales:
+
+1. Buscar la figura (e.g. T3_preg_7.png) en:
+vi ../MoodleCursoAnterior/SoloCuestiones/files.xml
+
+2. Copiar el "contenthash" (e.g. b2027b0033aa7418f385b410eced3c46f36dca29)
+
+3. Copiar la figura del curso de Moodle a mi banco de figuras:
+cp ../MoodleCursoAnterior/SoloCuestiones/files/*/b2027b0033aa7418f385b410eced3c46f36dca29 ../Images/T3_preg_7.png
+
+4. Incluir la figura en el figuro rst, dentro de la sección "..Processed":
+includegraphics('../Images/T3_preg_7.png',width=100,style='left') 
